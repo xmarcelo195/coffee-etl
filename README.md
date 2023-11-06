@@ -20,22 +20,22 @@ Planilha com cotação do preço de café (2019 - 2022)
   - Power BI
 
 ## API
-### Endpoint utilizado:<br>
+### Endpoint utilizado:
   https://docs.openexchangerates.org/reference/historical-json
-### Limitações:<br>
+### Limitações:
   - Necessário buscar 1 data por vez, consulta em lote apenas para premium e cada dia no range é uma requisição
   - Limite de 1000 chamadas por mÊs
-### Credencial:<br>
+### Credencial:
   - No Código
-### Suporte disponível <br>
+### Suporte disponível
   - Não
 
 ## Tabelas
-### Cruzamento <br>
+### Cruzamento
   - Base histórica dos preços de Café com o histórico das cotações
   - Key = Coluna de Data.
   
-### Formato <br>
+### Formato
   O arquivo que retorna da API é do Tipo Json ele é convertido para pandas dataframe e salvo utilizando sqlite.
   
 ### POC
@@ -71,3 +71,11 @@ Planilha com cotação do preço de café (2019 - 2022)
 
 #### Tabela analytics_coffee
   Identica a tabela coffee porém adiciona linhas referentes aos valores de Open, High,Low,Close convertidos para o Cambio de outras moedas.
+
+## Testes
+  Algumas condições esperadas utilizando great expectations
+  - Coluna 'Volume' deve existir
+  - Coluna 'Close' deve existir
+  - Coluna 'Currency' deve existir
+  - Coluna 'Volume' não pode ser nula (pode ser 0)
+  - Coluna 'Volume' deve ser um número inteiro
