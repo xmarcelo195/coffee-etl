@@ -1,11 +1,17 @@
 # Documentação coffee-etl
 
+## Arquitetura
+![image](https://github.com/xmarcelo195/coffee-etl/assets/66145723/3f265f34-8036-40e9-b5e6-14e1303849dd)
+
+## Resultados das Queries SQLite em CSV
+https://drive.google.com/drive/folders/1FqveiHRcvDCU-fXAalRhA569hS-xRGR_?usp=drive_link
+
 ## Fonte dos dados 🧭
 Api com o histórico da taxa de cambio
   https://docs.openexchangerates.org/reference/api-introduction
 
-Planilha com cotação do preço de café (2019 - 2023)
-  Disponibilizada via whatsapp (colocar link)
+Planilha com cotação do preço de café (2019 - 2022)
+  Disponibilizada via whatsapp (https://raw.githubusercontent.com/xmarcelo195/coffee-etl/main/src/data/coffee.csv)
 
 ## Objetivo
   Consumir uma api e coletar valores de câmbios de 4 moedas (Real - BRL, Euro - EUR e Peso Chileno - CLP) nos últimos 30 dias.
@@ -17,22 +23,22 @@ Planilha com cotação do preço de café (2019 - 2023)
   - Power BI
 
 ## API
-### Endpoint utilizado:<br>
+### Endpoint utilizado:
   https://docs.openexchangerates.org/reference/historical-json
-### Limitações:<br>
+### Limitações:
   - Necessário buscar 1 data por vez, consulta em lote apenas para premium e cada dia no range é uma requisição
   - Limite de 1000 chamadas por mÊs
-### Credencial:<br>
+### Credencial:
   - No Código
-### Suporte disponível <br>
+### Suporte disponível
   - Não
 
 ## Tabelas
-### Cruzamento <br>
+### Cruzamento
   - Base histórica dos preços de Café com o histórico das cotações
   - Key = Coluna de Data.
   
-### Formato <br>
+### Formato
   O arquivo que retorna da API é do Tipo Json ele é convertido para pandas dataframe e salvo utilizando sqlite.
   
 ### POC
@@ -68,3 +74,11 @@ Planilha com cotação do preço de café (2019 - 2023)
 
 #### Tabela analytics_coffee
   Identica a tabela coffee porém adiciona linhas referentes aos valores de Open, High,Low,Close convertidos para o Cambio de outras moedas.
+
+## Testes
+  Algumas condições esperadas utilizando great expectations
+  - Coluna 'Volume' deve existir
+  - Coluna 'Close' deve existir
+  - Coluna 'Currency' deve existir
+  - Coluna 'Volume' não pode ser nula (pode ser 0)
+  - Coluna 'Volume' deve ser um número inteiro
