@@ -17,44 +17,54 @@ Planilha com cotação do preço de café (2019 - 2023)
   - Power BI
 
 ## API
-Endpoint utilizado:
+### Endpoint utilizado:<br>
   https://docs.openexchangerates.org/reference/historical-json
-Limitações:
+### Limitações:<br>
   - Necessário buscar 1 data por vez, consulta em lote apenas para premium e cada dia no range é uma requisição
   - Limite de 1000 chamadas por mÊs
-Credencial:
+### Credencial:<br>
   - No Código
-Suporte disponível
+### Suporte disponível <br>
   - Não
 
-Cruzamento 🔀
+## Tabelas
+### Cruzamento <br>
   - Base histórica dos preços de Café com o histórico das cotações
   - Key = Coluna de Data.
   
-Formato
+### Formato <br>
   O arquivo que retorna da API é do Tipo Json ele é convertido para pandas dataframe e salvo utilizando sqlite.
   
-POC
+### POC
   Não houve prova de conceito
 
-<fazer depois>
-Dicionário Técnico
-Nome da coluna
-Tipo do dado
-Observação (descrição do dado)
-Dicionário Cliente 📖
-Schema do DB
-Nome da Tabela
-Coluna/Campo
-Origem/Sistema
+### Dicionário Técnico
+#### Tabela raw_cambio
+  Base de dado crua com o retorno da API de cambios
 
+##### Colunas
+  - data (str): data utilizada na chamada do endpoint
+  - response (str): json em formato string retornado na chamada do endpoint
 
+#### Tabela curated_cambio
+  Tratamento na tabela raw_cambio para extrair os valores do cambio e moeda
+##### Colunas
+  - data (str): data utilizada na chamada do endpoint
+  - moeda (str): Simbolo da moeda (EUR, CLP, BRL)
+  - cambio (float): valor do cambio na data para o simbolo
 
-O que esse campo/coluna significa?
-Contrato de Dados 📶🫱🏾‍🫲🏼
-Lista de colunas
-Requisição de formatos das colunas
-Schema(s)
-Fonte(s)
-Descrições das informações requeridas
-Incrementação ou atualização
+#### Tabela cambios
+  Versão completa da curated_cambio que não foi possivel coletar apenas com os dados da API por motivos de limitação de chamados. Colunas exatamente iguais
+
+#### Tabela Coffee
+  Dados de cotações de comodity do café entre 01/2019 e 08/2022
+##### Colunas
+ - Date (str): Data referência
+ - Open (float): Valor do preço de abertura na data de referência
+ - High (float): Maior Preço atingido na data de referência
+ - Low (float): Menor Preço atingido na data de referência
+ - Close (float): Preço no fechamento da data de referência
+ - Volume (int): Volume de papeis negociados
+
+#### Tabela analytics_coffee
+  Identica a tabela coffee porém adiciona linhas referentes aos valores de Open, High,Low,Close convertidos para o Cambio de outras moedas.
