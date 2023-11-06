@@ -3,6 +3,9 @@
 ## Arquitetura
 ![image](https://github.com/xmarcelo195/coffee-etl/assets/66145723/3f265f34-8036-40e9-b5e6-14e1303849dd)
 
+## Resultados das Queries SQLite em CSV
+https://drive.google.com/drive/folders/1FqveiHRcvDCU-fXAalRhA569hS-xRGR_?usp=drive_link
+
 ## Fonte dos dados 🧭
 Api com o histórico da taxa de cambio
   https://docs.openexchangerates.org/reference/api-introduction
