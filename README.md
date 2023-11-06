@@ -1,11 +1,14 @@
 # Documentação coffee-etl
 
+## Arquitetura
+![image](https://github.com/xmarcelo195/coffee-etl/assets/66145723/3f265f34-8036-40e9-b5e6-14e1303849dd)
+
 ## Fonte dos dados 🧭
 Api com o histórico da taxa de cambio
   https://docs.openexchangerates.org/reference/api-introduction
 
-Planilha com cotação do preço de café (2019 - 2023)
-  Disponibilizada via whatsapp (colocar link)
+Planilha com cotação do preço de café (2019 - 2022)
+  Disponibilizada via whatsapp (https://raw.githubusercontent.com/xmarcelo195/coffee-etl/main/src/data/coffee.csv)
 
 ## Objetivo
   Consumir uma api e coletar valores de câmbios de 4 moedas (Real - BRL, Euro - EUR e Peso Chileno - CLP) nos últimos 30 dias.
